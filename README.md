@@ -8,3 +8,16 @@
 
 > 有待完善和掌握的地方：
 将日志文件存储到数据库中，并将其连接到可视化grafana中，实现收集的日志实际数据的可视化
+
+
+>启动etcd
+```bash
+brew services start etcd
+# don't want/need a background service you can just run:
+ETCD_UNSUPPORTED_ARCH="arm64" /opt/homebrew/opt/etcd/bin/etcd
+```
+
+启动kafka
+```bash
+/opt/homebrew/opt/kafka/bin/kafka-server-start /opt/homebrew/etc/kafka/server.properties
+```

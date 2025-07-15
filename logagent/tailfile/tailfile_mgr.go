@@ -34,7 +34,7 @@ func Init(allConf []common.CollectEntry) (err error) {
 			logrus.Errorf("create tailobj for:%s failed,err:%v", conf.Path, err)
 			continue
 		}
-		logrus.Info("create a tail task for path:%s success", conf.Path)
+		logrus.Infof("create a tail task for path:%s success", conf.Path)
 		ttMgr.tailTaskMap[tt.path] = tt //把创建的这个tailTask任务记录在册，方便后续管理
 		//起一个后台的goroutine去收集日志
 		go tt.run()
@@ -62,9 +62,8 @@ func (t *tailTaskMgr) watch() {
 				logrus.Errorf("create tailobj for:%s failed,err:%v", conf.Path, err)
 				continue
 			}
-			logrus.Info("create a tail task for path:%s success", conf.Path)
-			t.tailTaskMap[tt.path] = tt //把创建的这个tailTask任务记录在册，方便后期
-			//起一个后台的goroutine去收集日志
+			logrus.Infof("create a tail task for path:%s success", conf.Path)
+			t.tailTaskMap[tt.path] = tt //把创建的这个tailTask任务记录在册，方便后期起一个后台的goroutine去收集日志
 			go tt.run()
 		}
 		//3. 原来有的现在没有的要tailTask停掉

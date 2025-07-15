@@ -43,7 +43,7 @@ func (t *tailTask) Init() (err error) {
 }
 
 func (t *tailTask) run() {
-	logrus.Info("path:%s is running...", t.path)
+	logrus.Infof("path:%s is running...", t.path)
 	//读取数据，发往kafka
 	//logfile-->TailObj --> log --> Client -->kafka
 	//循环读数据
@@ -68,6 +68,7 @@ func (t *tailTask) run() {
 			msg := &sarama.ProducerMessage{}
 			msg.Topic = t.topic
 			msg.Value = sarama.StringEncoder(line.Text)
+			logrus.Infof("消息发送给通道%v，新消息是%v\n", msg.Topic, msg.Value)
 			//丢到通道中
 			//kafka.MsgChan <- msg
 			kafka.ToMsgChan(msg)
