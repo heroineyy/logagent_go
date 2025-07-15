@@ -1,3 +1,4 @@
 *.exe
 .idea/
 logagent/logs/
+logagent/default.etcd/
